@@ -95,7 +95,7 @@ def upload(files: list[UploadFile]):
     }
 
 
-@app.post("/chat/",response_model=ResponseModel)
+@app.post("/chata/",response_model=ResponseModel)
 async def create_item(question: ResponseModel,):
     import psycopg2
     from psycopg2 import OperationalError
