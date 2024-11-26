@@ -17,8 +17,7 @@ phases:
       - echo "Pushing Docker image to ECR..."
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
       - echo "Docker image pushed successfully!"
-      - DOCKER_CONTAINER_NAME=javatechie-registry
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest > imagedefinitions.json
       - echo $DOCKER_CONTAINER_NAME
       - echo printing imagedefinitions.json
       - cat imagedefinitions.json
@@ -27,6 +26,7 @@ env:
   variables:
     AWS_ACCOUNT_ID: "376129880464"
     AWS_DEFAULT_REGION: "us-east-1"
+    DOCKER_CONTAINER_NAME: "fast_image"
     IMAGE_REPO_NAME: "container/repo"
 
 artifacts:
